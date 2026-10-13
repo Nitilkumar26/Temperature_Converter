@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperature Converter Pro</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #10172d, #25205a, #10172d);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+}
+
+.container {
+  width: 100%;
+  max-width: 470px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.icon {
+  font-size: 45px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.header p {
+  color: #b9bfd7;
+  font-size: 14px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 22px;
+  padding: 25px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+label {
+  display: block;
+  color: #cdd2e8;
+  font-size: 14px;
+  margin-bottom: 9px;
+}
+
+select, input {
+  width: 100%;
+  padding: 14px;
+  background: #171d39;
+  color: white;
+  border: 1px solid #444c76;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #8b7cff;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.swap {
+  display: block;
+  margin: 0 auto 18px;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: #7565f6;
+  color: white;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+button {
+  transition: 0.2s;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.convert {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 11px;
+  background: linear-gradient(90deg, #7065f5, #a052ed);
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+  background: rgba(117, 101, 246, 0.15);
+  border: 1px solid rgba(139, 124, 255, 0.35);
+  border-radius: 14px;
+}
+
+.result p {
+  color: #cdd2e8;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+#output {
+  font-size: 30px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.formulas {
+  margin-top: 22px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+}
+
+.formulas h3 {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.formulas p {
+  color: #cdd2e8;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+footer {
+  text-align: center;
+  color: #aeb5d1;
+  font-size: 13px;
+  margin-top: 22px;
+}
+
+footer span {
+  color: #ff759c;
+}
+
+@media (max-width: 380px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="icon">🌡️</div>
+    <h1>Temperature Converter</h1>
+    <p>Convert temperatures quickly and easily</p>
+  </header>
+
+  <main class="card">
+
+    <div class="field">
+      <label for="fromUnit">Convert From</label>
+      <select id="fromUnit">
+        <option value="C">Celsius (°C)</option>
+        <option value="F">Fahrenheit (°F)</option>
+        <option value="K">Kelvin (K)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="temperature">Enter Temperature</label>
+      <input type="number" id="temperature"
+        placeholder="e.g. 25" step="any">
+    </div>
+
+    <button class="swap" id="swapBtn"
+      type="button" aria-label="Swap units">⇅</button>
+
+    <div class="field">
+      <label for="toUnit">Convert To</label>
+      <select id="toUnit">
+        <option value="F">Fahrenheit (°F)</option>
+        <option value="C">Celsius (°C)</option>
+        <option value="K">Kelvin (K)</option>
+      </select>
+    </div>
+
+    <button class="convert" id="convertBtn" type="button">
+      Convert Temperature
+    </button>
+
+    <div class="result" aria-live="polite">
+      <p>Your Result</p>
+      <div id="output">--</div>
+    </div>
+
+  </main>
+
+  <section class="formulas">
+    <h3>📘 Conversion Formulas</h3>
+    <p>Celsius → Fahrenheit: (°C × 9/5) + 32</p>
+    <p>Fahrenheit → Celsius: (°F − 32) × 5/9</p>
+    <p>Celsius → Kelvin: °C + 273.15</p>
+    <p>Kelvin → Celsius: K − 273.15</p>
+  </section>
+
+  <footer>
+    Made with <span>♥</span> by Nitil Kumar
+    <br>Keep Learning • Keep Building
+  </footer>
+
+</div>
+
+<script>
+const fromUnit = document.getElementById("fromUnit");
+const toUnit = document.getElementById("toUnit");
+const temperature = document.getElementById("temperature");
+const output = document.getElementById("output");
+const convertBtn = document.getElementById("convertBtn");
+const swapBtn = document.getElementById("swapBtn");
+
+function toCelsius(value, unit) {
+  if (unit === "C") return value;
+  if (unit === "F") return (value - 32) * 5 / 9;
+  return value - 273.15;
+}
+
+function fromCelsius(value, unit) {
+  if (unit === "C") return value;
+  if (unit === "F") return (value * 9 / 5) + 32;
+  return value + 273.15;
+}
+
+function convertTemperature() {
+  const raw = temperature.value;
+
+  if (raw.trim() === "") {
+    output.textContent = "Enter a temperature!";
+    return;
+  }
+
+  const value = Number(raw);
+
+  if (!Number.isFinite(value)) {
+    output.textContent = "Invalid temperature";
+    return;
+  }
+
+  if (fromUnit.value === "K" && value < 0) {
+    output.textContent = "Kelvin cannot be negative";
+    return;
+  }
+
+  const celsius = toCelsius(value, fromUnit.value);
+
+  if (celsius < -273.15) {
+    output.textContent = "Below absolute zero!";
+    return;
+  }
+
+  const result = fromCelsius(celsius, toUnit.value);
+  const symbols = { C: "°C", F: "°F", K: "K" };
+
+  output.textContent =
+    result.toFixed(2) + " " + symbols[toUnit.value];
+}
+
+convertBtn.addEventListener("click", convertTemperature);
+
+swapBtn.addEventListener("click", function() {
+  const oldFrom = fromUnit.value;
+  fromUnit.value = toUnit.value;
+  toUnit.value = oldFrom;
+  convertTemperature();
+});
+
+temperature.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    convertTemperature();
+  }
+});
+</script>
+</body>
+</html>
